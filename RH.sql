@@ -6,7 +6,7 @@ GO
 USE rh
 GO
 
-/*Criação das tabelas*/
+/*CriaÃ§Ã£o das tabelas*/
 CREATE TABLE tb_beneficio(
 	id_beneficio INT IDENTITY NOT NULL,
 	tipo_beneficio VARCHAR(45) NOT NULL,
@@ -18,7 +18,7 @@ GO
 CREATE TABLE tb_imposto(
 	id_imposto INT IDENTITY NOT NULL,
 	porcentagem DECIMAL NOT NULL,
-	nome VARCHAR(80) NOT NULL
+	nome VARCHAR(80) NOT NULL,
 	PRIMARY KEY (id_imposto)
 	)
 GO
@@ -34,7 +34,7 @@ GO
 CREATE TABLE tb_departamento(
 	id_departamento		INT IDENTITY	NOT NULL,
 	nome				VARCHAR(80)		NOT NULL,
-	PRIMARY KEY (id_departamento),
+	PRIMARY KEY (id_departamento)
 	)
 GO
 
@@ -58,7 +58,7 @@ CREATE TABLE tb_funcionario(
 	dt_deslg		DATE					NULL,
 	mtv_deslg		TEXT					NULL,
 	id_cargo		INT						NOT NULL,
-	id_departamento	INT						NOT NULL
+	id_departamento	INT						NOT NULL,
 	PRIMARY KEY (id_func),
 	CONSTRAINT fk_cargo_funcionario FOREIGN KEY (id_cargo) REFERENCES tb_cargo (id_cargo),
 	CONSTRAINT fk_departamento_funcionario FOREIGN KEY (id_departamento) REFERENCES tb_departamento (id_departamento)
@@ -158,6 +158,7 @@ CREATE TABLE tb_folha_pagamento(
   CONSTRAINT fk_tb_folha_pagamento_tb_folha_ponto1 FOREIGN KEY (id_fl_ponto)REFERENCES tb_folha_ponto (id_fl_ponto),
   CONSTRAINT fk_id_func_tb_folha_pagamento FOREIGN KEY (id_func) REFERENCES tb_funcionario (id_func),
   CONSTRAINT fk_id_cargo_tb_folha_pagamento FOREIGN KEY (id_cargo) REFERENCES tb_cargo (id_cargo),
+  CONSTRAINT uq_folha_pagamento_folha_ponto UNIQUE (id_fl_ponto)
   )
 GO
 
@@ -185,6 +186,3 @@ CREATE TABLE rl_Imp_func(
 	)
 GO
 /*Fim*/
-
-USE SIM;
-DROP DATABASE rh;

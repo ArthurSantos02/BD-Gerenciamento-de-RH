@@ -4,6 +4,12 @@ Esse projeto foi elaborado para a finalização do curso de **Administrador de B
 
 Esse Banco de dados tem a finalidade do gerenciamento do setor de RH de uma empresa.
 
+## RH Conecta — evolução para produto
+
+O repositório agora também contém um [MVP web do RH Conecta](mvp/README.md), portal colaborativo para organizar admissões, férias, competências, documentos e decisões entre empresas e escritórios contábeis.
+
+O MVP é executável localmente com Node.js 24, não requer dependências externas e inclui testes automatizados das regras críticas.
+
 ## Funcionalidades
 
 * Armazenamento dos dados de funcionários.

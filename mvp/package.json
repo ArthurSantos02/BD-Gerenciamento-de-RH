@@ -1,0 +1,15 @@
+{
+  "name": "rh-conecta-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP do portal colaborativo RH Conecta",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test --test-concurrency=1"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

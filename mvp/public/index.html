@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RH Conecta — portal colaborativo entre empresas e contabilidade">
+  <title>RH Conecta</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main id="login-view" class="login-shell">
+    <section class="login-brand">
+      <div class="brand-mark" aria-hidden="true">RH</div>
+      <p class="eyebrow">EMPRESA + CONTABILIDADE</p>
+      <h1>Rotinas de pessoal sem ruído, retrabalho ou planilhas dispersas.</h1>
+      <p>Centralize admissões, férias, documentos e decisões em um fluxo seguro e rastreável.</p>
+      <div class="brand-proof"><span>✓</span> Competências organizadas <span>✓</span> Histórico auditável</div>
+    </section>
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="mobile-brand"><div class="brand-mark">RH</div><strong>RH Conecta</strong></div>
+      <p class="eyebrow">BEM-VINDO</p>
+      <h2 id="login-title">Acesse seu espaço</h2>
+      <p class="muted">Use uma conta de demonstração para conhecer o MVP.</p>
+      <form id="login-form">
+        <label>E-mail<input id="email" name="email" type="email" value="empresa@demo.rh" autocomplete="username" required></label>
+        <label>Senha<input id="password" name="password" type="password" value="Demo@123" autocomplete="current-password" required></label>
+        <button class="primary full" type="submit">Entrar no RH Conecta</button>
+        <p id="login-error" class="form-error" role="alert"></p>
+      </form>
+      <details class="demo-accounts">
+        <summary>Contas para demonstração</summary>
+        <button type="button" data-demo="empresa@demo.rh">Empresa responsável</button>
+        <button type="button" data-demo="gestor@demo.rh">Gestor aprovador</button>
+        <button type="button" data-demo="analista@demo.rh">Analista de DP</button>
+        <button type="button" data-demo="admin@demo.rh">Administrador contábil</button>
+        <button type="button" data-demo="oficina@demo.rh">Outra empresa</button>
+        <small>Senha comum: Demo@123</small>
+      </details>
+    </section>
+  </main>
+
+  <div id="app-view" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="logo"><div class="brand-mark">RH</div><div><strong>RH Conecta</strong><small>Portal colaborativo</small></div></div>
+      <nav aria-label="Navegação principal">
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span> Visão geral</button>
+        <button class="nav-item" data-page="movements"><span>⇄</span> Movimentações</button>
+        <button class="nav-item" data-page="employees"><span>♙</span> Funcionários</button>
+        <button class="nav-item" data-page="audit"><span>◷</span> Auditoria</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span><span>Ambiente MVP</span></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <button id="menu-button" class="icon-button" aria-label="Abrir menu">☰</button>
+        <label class="organization-picker">Empresa
+          <select id="organization-select"></select>
+        </label>
+        <div class="user-menu"><div id="user-avatar" class="avatar">U</div><div><strong id="user-name"></strong><small id="user-role"></small></div><button id="logout-button" class="text-button">Sair</button></div>
+      </header>
+      <main class="content">
+        <section id="page-dashboard" class="page active">
+          <div class="page-heading"><div><p class="eyebrow">VISÃO GERAL</p><h1 id="greeting">Olá!</h1><p class="muted">Acompanhe o que precisa de atenção nesta competência.</p></div><div class="actions"><button class="secondary" data-open="vacation">+ Solicitar férias</button><button class="primary" data-open="admission">+ Nova admissão</button></div></div>
+          <div id="kpi-grid" class="kpi-grid"></div>
+          <div class="dashboard-grid">
+            <article class="panel span-2"><div class="panel-heading"><div><h2>Pendências e prazos</h2><p>Movimentações que exigem acompanhamento</p></div><button class="text-button" data-page-link="movements">Ver todas →</button></div><div id="deadline-list" class="deadline-list"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h2>Fluxo do mês</h2><p>Situação das movimentações</p></div></div><div id="status-chart" class="status-chart"></div></article>
+            <article class="panel span-3 quick-start"><div><p class="eyebrow">COMECE POR AQUI</p><h2>Envie uma movimentação completa</h2><p>O fluxo orienta a empresa, preserva os documentos e dá ao DP todas as informações para analisar.</p></div><button class="primary" data-open="admission">Criar admissão</button></article>
+          </div>
+        </section>
+
+        <section id="page-movements" class="page">
+          <div class="page-heading"><div><p class="eyebrow">OPERAÇÃO</p><h1>Movimentações</h1><p class="muted">Acompanhe o fluxo entre empresa e contabilidade.</p></div><div class="actions"><button class="secondary" data-open="vacation">+ Férias</button><button class="primary" data-open="admission">+ Admissão</button></div></div>
+          <article class="panel"><div class="toolbar"><div class="filter-group"><button class="chip active" data-filter="">Todas</button><button class="chip" data-filter="ADMISSION">Admissões</button><button class="chip" data-filter="VACATION">Férias</button></div><button id="refresh-movements" class="text-button">Atualizar</button></div><div id="movement-list" class="movement-list"></div></article>
+        </section>
+
+        <section id="page-employees" class="page">
+          <div class="page-heading"><div><p class="eyebrow">PESSOAS</p><h1>Funcionários</h1><p class="muted">Base ativa e histórico da empresa selecionada.</p></div><button id="new-employee" class="primary">+ Novo funcionário</button></div>
+          <article class="panel table-panel"><div id="employee-table"></div></article>
+        </section>
+
+        <section id="page-audit" class="page">
+          <div class="page-heading"><div><p class="eyebrow">GOVERNANÇA</p><h1>Auditoria</h1><p class="muted">Registro imutável das ações relevantes do portal.</p></div></div>
+          <article class="panel"><div id="audit-list" class="audit-list"></div></article>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="form-dialog">
+    <form id="entity-form" method="dialog">
+      <div class="dialog-heading"><div><p id="dialog-eyebrow" class="eyebrow">MOVIMENTAÇÃO</p><h2 id="dialog-title"></h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Fechar">×</button></div>
+      <div id="dialog-fields" class="form-grid"></div>
+      <p id="form-error" class="form-error" role="alert"></p>
+      <div class="dialog-actions"><button class="secondary" type="button" data-close-dialog>Cancelar</button><button id="save-entity" class="primary" type="submit">Salvar rascunho</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
